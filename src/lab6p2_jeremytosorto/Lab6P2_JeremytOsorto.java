@@ -96,6 +96,62 @@ public class Lab6P2_JeremytOsorto {
         return v;
     }
     
+    public static int[][] gene(int tam){
+        int[][]v= new int[(tam*2)+1][tam];
+        
+        for(int i=0; i<((tam*2)+1);i++){
+            for(int j=0; j<tam;j++){
+                System.out.print("["+v[i][j]+"] ");
+            }
+            System.out.println("");
+        }
+        
+        return v;
+    }
+    
+    public static int[][] generar1(int[][]y){
+        Random ran= new Random();
+        
+        for (int i=0; i<y.length; i++){
+            for(int j=0; j<y.length; j++){
+                y[i][j]=ran.nextInt(0,10);
+            }
+        }
+        
+        for (int i=0; i<y.length; i++){
+            for(int j=0; j<y.length; j++){
+                System.out.print("["+y[i][j]+"]");
+            }
+            System.out.println("");
+        }
+        
+        return y;
+    }
+    
+    public static int[][] rota(int[][]y, String rot){
+        String a,b,c,d;
+        int f, co;
+        a=rot.substring(0,2);
+        b=rot.substring(3,5);
+        
+        if ((a.charAt(0)=='f' || a.charAt(0)=='c')||(b.charAt(0)=='f'||b.charAt(0)=='c')){
+            if (a.charAt(0)=='f'){
+                c=a.substring(1,2);
+                f=Integer.parseInt(c);
+                co=0;
+                
+                System.out.println(f+""+co);
+            }
+        }
+        else{
+            System.out.println("Ingrese un valor correct");
+        }
+        
+        System.out.println(a+" "+b);
+        
+        return y;
+    }
+    
     public static void main(String[] args) {
         Scanner lee= new Scanner(System.in);
         Scanner lec= new Scanner(System.in);
@@ -112,10 +168,30 @@ public class Lab6P2_JeremytOsorto {
                     System.out.println("Ingrese una opeción lógica[pvq o p^q]");
                     String car=lec.next();
                     operar(x,car, cant);
+                    break;
                 case 2:
+                    System.out.println("Ingrese el tamaño de la piramide: ");
+                    int tam=lee.nextInt();
+                    
+                    int[][]z=gene(tam);
+                    
+                    break;
                 case 3:
+                    System.out.println("Ingrese el tamaño de su matriz cuadrada");
+                    int tama=lee.nextInt();
+                    
+                    int[][]y=new int[tama][tama];
+                    generar1(y);
+                    
+                    System.out.print("Ingrese comando de rotacion: ");
+                    String rot=lec.next();
+                    rota(y, rot);
+                    
+                    break;
                     
                 default:
+                    System.out.println("Gracias por usar mi programa :)");
+                    break;
                     
             }
         }
