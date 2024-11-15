@@ -98,12 +98,32 @@ public class Lab6P2_JeremytOsorto {
     
     public static int[][] gene(int tam){
         int[][]v= new int[(tam*2)+1][tam];
-        
-        for(int i=0; i<((tam*2)+1);i++){
-            for(int j=0; j<tam;j++){
-                System.out.print("["+v[i][j]+"] ");
+        int n = tam;
+        int[][] pascal = new int[n][n];
+        for (int i = 0; i < n; i++) {
+            pascal[i][0] = 1; 
+            pascal[i][i] = 1;
+
+            for (int j = 1; j < i; j++) {
+                pascal[i][j] = pascal[i - 1][j - 1] + pascal[i - 1][j];
             }
-            System.out.println("");
+        }
+
+        
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                System.out.print("[ ]");
+            }
+            for (int j = 0; j <= i; j++) {
+                System.out.print("[" + pascal[i][j] + "]");
+                if (pascal[i][j]!=' '){
+                    System.out.print("[ ]");
+                }
+            }
+            for (int j = i + 1; j < n; j++) {
+                System.out.print("[ ]");
+            }
+            System.out.println();
         }
         
         return v;
@@ -130,7 +150,7 @@ public class Lab6P2_JeremytOsorto {
     
     public static int[][] rota(int[][]y, String rot){
         String a,b,c,d;
-        int f, co;
+        int f, co, f1, co1;
         a=rot.substring(0,2);
         b=rot.substring(3,5);
         
@@ -139,9 +159,25 @@ public class Lab6P2_JeremytOsorto {
                 c=a.substring(1,2);
                 f=Integer.parseInt(c);
                 co=0;
-                
-                System.out.println(f+""+co);
             }
+            else if(a.charAt(0)=='c'){
+                c=a.substring(1,2);
+                f=0;
+                co=Integer.parseInt(c);
+            }
+            
+            if (b.charAt(0)=='f'){
+                d=b.substring(1,2);
+                f1=Integer.parseInt(d);
+                co1=0;
+            }
+            else if(b.charAt(0)=='c'){
+                d=b.substring(1,2);
+                f1=0;
+                co1=Integer.parseInt(d);
+            }
+            
+            
         }
         else{
             System.out.println("Ingrese un valor correct");
